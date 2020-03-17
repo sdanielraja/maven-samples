@@ -1,20 +1,22 @@
 pipeline {
-	agent docker{
-		image: 'maven:3.6.0'
+	agent {
+		docker{
+			image: 'maven:3.6.0'
+			}
 	}
 	options {
 		timestamp()
 	}
-	stages{
-	 stage('Build'){
+	stages {
+	 stage('Build') {
 	 	steps {
 	 	  sh "mvn install"
+	 		}
 	 	}
-	 stage('Test'){
+	 stage('Test') {
 	 	steps {
 	 	  sh "mvn Test"
 	 	}
-	 }
 	}
 	post{
 		success{
