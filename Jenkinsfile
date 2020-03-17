@@ -1,12 +1,12 @@
 pipeline {
 	agent {
 		docker{
-			image: 'maven:3.6.0'
+			image 'maven:3.6.0'
 			}
 	}
-	options {
-		timestamp()
-	}
+  options {
+    timestamps()
+  }
 	stages {
 	 stage('Build') {
 	 	steps {
@@ -16,12 +16,12 @@ pipeline {
 	 stage('Test') {
 	 	steps {
 	 	  sh "mvn Test"
-	 	}
+	 		}
+		}
 	}
 	post{
 		success{
 		archiveArtifacts artifacts: 'build/libs/**/*.jar', fingerprint: true
 		}
-	}
 	}
 }
